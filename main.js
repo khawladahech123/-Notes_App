@@ -1,24 +1,19 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const notesContainer= document.querySelector(".notes-container");
+const createBtn = document.querySelector(".btn");
+let notes = document.querySelectorAll("input-box");
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+createBtn.addEventListener("click",()=>{
+  let inputBox = document.createElement("p")
+  let img = document.createElement("img");
+  inputBox.className="input-box";
+  inputBox.setAttribute("contenteditable","true");
+  img.src="images/delete.png";
+  notesContainer.appendChild(inputBox).appendChild(img);
+});
 
-setupCounter(document.querySelector('#counter'))
+notesContainer.addEventListener("click",function(e){
+  if(e.target.tagName==="IMG"){
+    e.target.parentElement.remove();
+
+  }
+})
